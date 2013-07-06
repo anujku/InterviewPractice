@@ -3,6 +3,7 @@
 *.war
 *.ear
 /bin
+/build
 .classpath
 *.class
 .project
