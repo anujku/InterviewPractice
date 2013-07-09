@@ -68,14 +68,14 @@ public class OrderedArrayApp {
 	private static int removeMax() {
 		int max = -1;
 
-		for (int i = 0; i < arrayElements - 1; i++) {
+		for (int i = 0; i < arrayElements; i++) {
 			if (array[i] > max) {
 				max = array[i];
 			}
 		}
 
 		deleteElement(max);
-
+		arrayElements--;
 		return max;
 	}
 
