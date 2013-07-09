@@ -33,8 +33,7 @@ public class OrderedArrayApp {
 			} else {
 				if (element > array[currPos]) {
 					lowerBound = currPos + 1; // Its in lower half
-				} else
-					upperBound = currPos - 1; // Its in upper half
+				} else upperBound = currPos - 1; // Its in upper half
 			}
 		}
 	}
@@ -74,21 +73,23 @@ public class OrderedArrayApp {
 		}
 
 		deleteElement(max);
-		arrayElements--;
 		return max;
 	}
 
+	private static int[] removeDups(int[] array, int arrayElements) {
+
+		return null;
+	}
+
 	private static int[] merge(int[] array1, int arraySize1, int[] array2,
-			int arraySize2) {
+	  int arraySize2) {
 		int[] merged = new int[arraySize1 + arraySize2];
 		int i = 0, j = 0, k = 0;
 
 		while (i < arraySize1 && j < arraySize2) {
-			if (array1[i] < array2[j])
-				merged[k++] = array1[i++];
+			if (array1[i] < array2[j]) merged[k++] = array1[i++];
 
-			else
-				merged[k++] = array2[j++];
+			else merged[k++] = array2[j++];
 		}
 
 		while (i < arraySize1)
@@ -103,87 +104,87 @@ public class OrderedArrayApp {
 	public static void main(String[] args) throws Exception {
 		int choice = -1;
 
-		while (choice < 7) {
+		while (choice < 8) {
 			System.out.println("Please Enter your choice\n");
 			System.out.println("1. Create New Array \n" + "2. Search Element\n"
-					+ "3. Delete Element\n" + "4. List Elements\n"
-					+ "5. Remove the Maximum Element\n" + "6. Merge Array\n"
-					+ "7. Exit\n");
+			  + "3. Delete Element\n" + "4. List Elements\n"
+			  + "5. Remove the Maximum Element\n" + "6. Merge Array\n"
+			  + "7. Remove Duplicates\n" + "8. Exit\n");
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					System.in));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			choice = Integer.parseInt(reader.readLine());
 
 			switch (choice) {
-			case 1:
-				System.out.println("Enter Array Size\n");
-				int arraySize = Integer.parseInt(reader.readLine());
-				array = new int[arraySize];
+				case 1:
+					System.out.println("Enter Array Size\n");
+					int arraySize = Integer.parseInt(reader.readLine());
+					array = new int[arraySize];
 
-				System.out.println("Enter Elements\n");
-				for (int count = 0; count < arraySize; count++) {
-					insert(array, Integer.parseInt(reader.readLine()),
-							arrayElements);
-					arrayElements++;
-				}
-				break;
-
-			case 2:
-				System.out.println("Enter Element to search : \n");
-				int pos = searchElement(Integer.parseInt(reader.readLine()));
-
-				if (pos < 0) {
-					System.out.println("Element not present !");
+					System.out.println("Enter Elements\n");
+					for (int count = 0; count < arraySize; count++) {
+						insert(array, Integer.parseInt(reader.readLine()), arrayElements);
+						arrayElements++;
+					}
 					break;
-				}
-				System.out.println("Element position in the array : "
-						+ (pos + 1));
-				break;
 
-			case 3:
-				System.out.println("Enter Element to delete : \n");
+				case 2:
+					System.out.println("Enter Element to search : \n");
+					int pos = searchElement(Integer.parseInt(reader.readLine()));
 
-				if (deleteElement(Integer.parseInt(reader.readLine())) == null) {
-					System.out.println("Element not present !");
+					if (pos < 0) {
+						System.out.println("Element not present !");
+						break;
+					}
+					System.out.println("Element position in the array : " + (pos + 1));
 					break;
-				}
-				arrayElements--;
-				System.out.println("Updated Array");
-				for (int count = 0; count < arrayElements; count++) {
-					System.out.println(array[count]);
-				}
-				break;
 
-			case 4:
-				for (int count = 0; count < arrayElements; count++) {
-					System.out.println(array[count]);
-				}
-				break;
+				case 3:
+					System.out.println("Enter Element to delete : \n");
 
-			case 5:
-				System.out.println("Maximum Element in the array : "
-						+ removeMax() + " removed.");
-				break;
+					if (deleteElement(Integer.parseInt(reader.readLine())) == null) {
+						System.out.println("Element not present !");
+						break;
+					}
+					arrayElements--;
+					System.out.println("Updated Array");
+					for (int count = 0; count < arrayElements; count++) {
+						System.out.println(array[count]);
+					}
+					break;
 
-			case 6:
-				System.out.println("Enter New Array size : ");
-				int newArraySize = Integer.parseInt(reader.readLine());
-				int[] newArray = new int[newArraySize];
+				case 4:
+					for (int count = 0; count < arrayElements; count++) {
+						System.out.println(array[count]);
+					}
+					break;
 
-				System.out.println("Enter New Array Elements to merge with"
-						+ " existing array : \n");
-				int newArrayElements = 0;
-				for (int count = 0; count < newArraySize; count++) {
-					insert(newArray, Integer.parseInt(reader.readLine()),
-							newArrayElements);
-					newArrayElements++;
-				}
-				int[] mergedArray = merge(array, arrayElements, newArray,
-						newArraySize);
-				for (int count = 0; count < mergedArray.length; count++) {
-					System.out.println(mergedArray[count]);
-				}
-				break;
+				case 5:
+					System.out.println("Maximum Element in the array : " + removeMax()
+					  + " removed.");
+					arrayElements--;
+					break;
+
+				case 6:
+					System.out.println("Enter New Array size : ");
+					int newArraySize = Integer.parseInt(reader.readLine());
+					int[] newArray = new int[newArraySize];
+
+					System.out.println("Enter New Array Elements to merge with"
+					  + " existing array : \n");
+					int newArrayElements = 0;
+					for (int count = 0; count < newArraySize; count++) {
+						insert(newArray, Integer.parseInt(reader.readLine()), newArrayElements);
+						newArrayElements++;
+					}
+					int[] mergedArray = merge(array, arrayElements, newArray, newArraySize);
+					for (int count = 0; count < mergedArray.length; count++) {
+						System.out.println(mergedArray[count]);
+					}
+					break;
+
+				case 7:
+					removeDups(array, arrayElements);
+					break;
 			}
 		}
 	}
