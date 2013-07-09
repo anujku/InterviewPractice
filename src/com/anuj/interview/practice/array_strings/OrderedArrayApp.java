@@ -46,7 +46,7 @@ public class OrderedArrayApp {
 				break;
 			}
 		}
-		for (int elem = arrayElements; elem < currElem; elem--) {
+		for (int elem = arrayElements; elem > currElem; elem--) {
 			array[elem] = array[elem - 1];
 		}
 		array[currElem] = element;
@@ -65,13 +65,28 @@ public class OrderedArrayApp {
 		return null;
 	}
 
+	private static int removeMax() {
+		int max = -1;
+
+		for (int i = 0; i < arrayElements - 1; i++) {
+			if (array[i] > max) {
+				max = array[i];
+			}
+		}
+
+		deleteElement(max);
+
+		return max;
+	}
+
 	public static void main(String[] args) throws Exception {
 		int choice = -1;
 
-		while (choice < 5) {
+		while (choice < 6) {
 			System.out.println("Please Enter your choice\n");
-			System.out
-					.println("1. Create New Array \n2. Search Element \n3. Delete Element \n4. List Elements \n5. Exit\n");
+			System.out.println("1. Create New Array \n2. Search Element \n3. "
+					+ "Delete Element \n4. List Elements"
+					+ " \n5. Remove the Maximum Element \n6. Exit\n");
 
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					System.in));
@@ -119,6 +134,11 @@ public class OrderedArrayApp {
 				for (int count = 0; count < arrayElements; count++) {
 					System.out.println(array[count]);
 				}
+				break;
+
+			case 5:
+				System.out.println("Maximum Element in the array : "
+						+ removeMax() + " removed.");
 			}
 		}
 	}
