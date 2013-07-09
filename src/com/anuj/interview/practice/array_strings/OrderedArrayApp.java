@@ -39,7 +39,7 @@ public class OrderedArrayApp {
 		}
 	}
 
-	private static void insert(int element) {
+	private static void insert(int[] array, int element, int arrayElements) {
 		int currElem;
 		for (currElem = 0; currElem < arrayElements; currElem++) {
 			if (array[currElem] > element) {
@@ -50,7 +50,6 @@ public class OrderedArrayApp {
 			array[elem] = array[elem - 1];
 		}
 		array[currElem] = element;
-		arrayElements++;
 	}
 
 	private static int[] deleteElement(int element) {
@@ -79,14 +78,37 @@ public class OrderedArrayApp {
 		return max;
 	}
 
+	private static int[] merge(int[] array1, int arraySize1, int[] array2,
+			int arraySize2) {
+		int[] merged = new int[arraySize1 + arraySize2];
+		int i = 0, j = 0, k = 0;
+
+		while (i < arraySize1 && j < arraySize2) {
+			if (array1[i] < array2[j])
+				merged[k++] = array1[i++];
+
+			else
+				merged[k++] = array2[j++];
+		}
+
+		while (i < arraySize1)
+			merged[k++] = array1[i++];
+
+		while (j < arraySize2)
+			merged[k++] = array2[j++];
+
+		return merged;
+	}
+
 	public static void main(String[] args) throws Exception {
 		int choice = -1;
 
-		while (choice < 6) {
+		while (choice < 7) {
 			System.out.println("Please Enter your choice\n");
-			System.out.println("1. Create New Array \n2. Search Element \n3. "
-					+ "Delete Element \n4. List Elements"
-					+ " \n5. Remove the Maximum Element \n6. Exit\n");
+			System.out.println("1. Create New Array \n" + "2. Search Element\n"
+					+ "3. Delete Element\n" + "4. List Elements\n"
+					+ "5. Remove the Maximum Element\n" + "6. Merge Array\n"
+					+ "7. Exit\n");
 
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					System.in));
@@ -100,7 +122,9 @@ public class OrderedArrayApp {
 
 				System.out.println("Enter Elements\n");
 				for (int count = 0; count < arraySize; count++) {
-					insert(Integer.parseInt(reader.readLine()));
+					insert(array, Integer.parseInt(reader.readLine()),
+							arrayElements);
+					arrayElements++;
 				}
 				break;
 
@@ -139,6 +163,27 @@ public class OrderedArrayApp {
 			case 5:
 				System.out.println("Maximum Element in the array : "
 						+ removeMax() + " removed.");
+				break;
+
+			case 6:
+				System.out.println("Enter New Array size : ");
+				int newArraySize = Integer.parseInt(reader.readLine());
+				int[] newArray = new int[newArraySize];
+
+				System.out.println("Enter New Array Elements to merge with"
+						+ " existing array : \n");
+				int newArrayElements = 0;
+				for (int count = 0; count < newArraySize; count++) {
+					insert(newArray, Integer.parseInt(reader.readLine()),
+							newArrayElements);
+					newArrayElements++;
+				}
+				int[] mergedArray = merge(array, arrayElements, newArray,
+						newArraySize);
+				for (int count = 0; count < mergedArray.length; count++) {
+					System.out.println(mergedArray[count]);
+				}
+				break;
 			}
 		}
 	}
