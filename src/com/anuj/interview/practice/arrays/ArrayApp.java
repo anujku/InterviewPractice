@@ -1,4 +1,4 @@
-package com.anuj.interview.practice.array_strings;
+package com.anuj.interview.practice.arrays;
 
 import java.io.*;
 
