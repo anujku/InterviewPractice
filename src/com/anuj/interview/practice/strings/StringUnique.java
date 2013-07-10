@@ -18,12 +18,11 @@ public class StringUnique {
 
 	private static boolean checkUnique(String string) {
 		String newString = "";
-		for(int i = 0; i < string.length(); i++) {
+		for (int i = 0; i < string.length(); i++) {
 			String charc = Character.toString(string.charAt(i));
-			if(!newString.contains(charc)) {
+			if (!newString.contains(charc)) {
 				newString = newString + charc;
-			}
-			else {
+			} else {
 				return false;
 			}
 		}
