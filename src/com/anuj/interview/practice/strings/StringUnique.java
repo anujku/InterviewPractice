@@ -16,14 +16,29 @@ public class StringUnique {
 		}
 	}
 
+	// My Version
+	// private static boolean checkUnique(String string) {
+	// String newString = "";
+	// for (int i = 0; i < string.length(); i++) {
+	// String charc = Character.toString(string.charAt(i));
+	// if (!newString.contains(charc)) {
+	// newString = newString + charc;
+	// } else {
+	// return false;
+	// }
+	// }
+	// return true;
+	// }
+	// Book Version
 	private static boolean checkUnique(String string) {
-		String newString = "";
+		boolean[] chars = new boolean[256];
+		if (string.length() > 256) { return false; }
 		for (int i = 0; i < string.length(); i++) {
-			String charc = Character.toString(string.charAt(i));
-			if (!newString.contains(charc)) {
-				newString = newString + charc;
-			} else {
+			int charc = string.charAt(i);
+			if (chars[charc]) {
 				return false;
+			} else {
+				chars[charc] = true;
 			}
 		}
 		return true;

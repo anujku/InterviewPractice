@@ -10,11 +10,18 @@ public class StringReverse {
 		System.out.println("Reverse of " + string + " is : " + reverse(string));
 	}
 
+	// public static String reverse(String string) {
+	// StringBuilder reverseString = new StringBuilder();
+	// for (int i = string.length() - 1; i >= 0; i--) {
+	// reverseString.append(Character.toString(string.charAt(i)));
+	// }
+	// return reverseString.toString();
+	// }
 	public static String reverse(String string) {
-		String reverseString = "";
-		for (int i = string.length() - 1; i >= 0; i--) {
-			reverseString = reverseString + Character.toString(string.charAt(i));
+		int length = string.length();
+		for (int i = length -1 ; i >= 0; i--) {
+			string = string + string.charAt(i);
 		}
-		return reverseString;
+		return string.substring(length, string.length());
 	}
 }
