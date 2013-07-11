@@ -29,11 +29,29 @@ public class StringSpaceReplacer {
 		return new String(newChars);
 	}
 
+	public static String replaceSpaces2(String string) {
+		string = string.trim();
+		StringBuilder newString = new StringBuilder();
+		char[] chars = string.toCharArray();
+		for (int i = 0; i < chars.length; i++) {
+			if (chars[i] == ' ') {
+				newString.append("%20");
+			} else {
+				newString.append(chars[i]);
+			}
+		}
+		return newString.toString();
+	}
+
 	public static void main(String[] args) throws IOException {
 		System.out.println("Please Enter a String to replace spaces from it : ");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String string = reader.readLine();
+		System.out.println("Using Method 1 : ");
 		System.out.println(string + " after replacing spaces from it : "
 		  + replaceSpaces(string));
+		System.out.println("Using Method 2 : ");
+		System.out.println(string + " after replacing spaces from it : "
+		  + replaceSpaces2(string));
 	}
 }
