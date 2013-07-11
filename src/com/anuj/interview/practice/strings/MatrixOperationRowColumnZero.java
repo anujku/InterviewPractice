@@ -4,33 +4,24 @@ import java.io.*;
 
 public class MatrixOperationRowColumnZero {
 	private static int[][] setRowColumnZero(int[][] matrix) {
-		int[][] updatedMatrix = new int[matrix.length][matrix[0].length];
+		boolean[] rows = new boolean[matrix.length];
+		boolean[] columns = new boolean[matrix[0].length];
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
-				updatedMatrix[i][j] = 10 ^ -99;
-			}
-		}
-		for (int rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
-			int[] row = matrix[rowIndex];
-			if (row != null) {
-				for (int columnIndex = 0; columnIndex < row.length; columnIndex++) {
-					if (matrix[rowIndex][columnIndex] == 0) {
-						for (int cIndex = 0; cIndex < row.length; cIndex++) {
-							updatedMatrix[rowIndex][cIndex] = 0;
-						}
-						for (int rIndex = 0; rIndex < matrix.length; rIndex++) {
-							updatedMatrix[rIndex][columnIndex] = 0;
-						}
-						break;
-					} else {
-						if (updatedMatrix[rowIndex][columnIndex] != 0) {
-							updatedMatrix[rowIndex][columnIndex] = matrix[rowIndex][columnIndex];
-						}
-					}
+				if (matrix[i][j] == 0) {
+					rows[i] = true;
+					columns[j] = true;
 				}
 			}
 		}
-		return updatedMatrix;
+		for (int rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
+			for (int columnIndex = 0; columnIndex < matrix[0].length; columnIndex++) {
+				if (rows[rowIndex] || columns[columnIndex]) {
+					matrix[rowIndex][columnIndex] = 0;
+				}
+			}
+		}
+		return matrix;
 	}
 
 	public static void main(String[] args) throws IOException {
