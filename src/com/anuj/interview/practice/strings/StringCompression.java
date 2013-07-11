@@ -17,12 +17,8 @@ public class StringCompression {
 		}
 		compressed.append(Character.toString(string.charAt(string.length() - 1))
 		  + count);
-		
-		if (compressed.toString().length() > string.length()) {
-			return string;
-		} else {
-			return compressed.toString();
-		}
+		return (compressed.toString().length() > string.length()) ? string
+		  : compressed.toString();
 	}
 
 	public static void main(String[] args) throws IOException {
