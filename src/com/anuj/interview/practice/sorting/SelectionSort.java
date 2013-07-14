@@ -50,7 +50,10 @@ public class SelectionSort {
 			System.out.println("Enter " + i + "th element of the array");
 			array[i] = Integer.parseInt(reader.readLine());
 		}
+		long startTime = System.nanoTime();
 		array = selctionSort(array);
+		long totalTime = System.nanoTime() - startTime;
+		System.out.println("Total Runtime in nanoseconds : " + totalTime);
 		System.out.println("Selection sorted array : ");
 		for (int i = 0; i < array.length; i++) {
 			System.out.println(array[i]);
