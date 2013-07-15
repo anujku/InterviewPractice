@@ -29,7 +29,26 @@ public class InsertionSort {
 	// Average case performance О(n2) comparisons, swaps
 	// Worst case space complexity О(n) total, O(1) auxiliary
 	private static int[] insertionSort(int[] array) {
-		return null;
+		for (int outer = 1; outer < array.length; outer++) {
+			// at the start of the iteration, A[0..i-1] are in sorted order
+			// this iteration will insert A[i] into that sorted order
+			// save A[i], the value that will be inserted into the array on this iteratio
+			int holePos = outer;
+			// now mark position i as the hole; A[i]=A[holePos] is now empty
+			int valueToInsert = array[holePos];
+			// keep moving the hole down until the valueToInsert is larger than
+			// what's just below the hole or the hole has reached the beginning of the
+			// array
+			while (holePos > 0 && valueToInsert < array[holePos - 1]) {
+				// value to insert doesn't belong where the hole currently is, so shift
+				array[holePos] = array[holePos - 1]; // shift the larger value up
+				holePos = holePos - 1; // move the hole position down
+			}
+			// hole is in the right position, so put valueToInsert into the hole
+			array[holePos] = valueToInsert;
+			// A[0..i] are now in sorted order
+		}
+		return array;
 	}
 
 	public static void main(String[] args) throws IOException {
