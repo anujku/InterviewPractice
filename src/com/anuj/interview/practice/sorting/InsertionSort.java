@@ -53,6 +53,8 @@ public class InsertionSort {
 		return array;
 	}
 
+	// This method removes duplicates from sorted array in O(N) time also, it does
+	// not change the position of any element twice
 	public static int removeDups() {
 		int j = 0;
 		for (int i = 1; i < array.length; i++) {
@@ -63,7 +65,7 @@ public class InsertionSort {
 		}
 		return j + 1;
 	}
-
+	
 	public static void main(String[] args) throws IOException {
 		System.out.println("Enter size of the array to do insertion sort : ");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
