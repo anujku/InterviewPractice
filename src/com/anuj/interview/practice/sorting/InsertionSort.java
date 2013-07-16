@@ -31,10 +31,12 @@ public class InsertionSort {
 	// Average case performance О(n2) comparisons, swaps
 	// Worst case space complexity О(n) total, O(1) auxiliary
 	private static int[] insertionSort() {
+		int counter = 0;
 		for (int outer = 1; outer < array.length; outer++) {
 			// at the start of the iteration, A[0..i-1] are in sorted order
 			// this iteration will insert A[i] into that sorted order
-			// save A[i], the value that will be inserted into the array on this iteratio
+			// save A[i], the value that will be inserted into the array on this
+			// iteration
 			int holePos = outer;
 			// now mark position i as the hole; A[i]=A[holePos] is now empty
 			int valueToInsert = array[holePos];
@@ -46,11 +48,23 @@ public class InsertionSort {
 				array[holePos] = array[holePos - 1]; // shift the larger value up
 				holePos = holePos - 1; // move the hole position down
 			}
+			if (valueToInsert == array[holePos - 1]) {
+				array[holePos - 1] = -1;
+				counter++;
+			}
 			// hole is in the right position, so put valueToInsert into the hole
 			array[holePos] = valueToInsert;
 			// A[0..i] are now in sorted order
 		}
-		return array;
+		int[] updatedArray = new int[array.length - counter];
+		int j = 0;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] != -1) {
+				updatedArray[j] = array[i];
+				j++;
+			}
+		}
+		return updatedArray;
 	}
 
 	// This method removes duplicates from sorted array in O(N) time also, it does
@@ -65,7 +79,7 @@ public class InsertionSort {
 		}
 		return j + 1;
 	}
-	
+
 	public static void main(String[] args) throws IOException {
 		System.out.println("Enter size of the array to do insertion sort : ");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
