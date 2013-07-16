@@ -1,4 +1,4 @@
-package com.anuj.interview.practice.sorting;
+package com.anuj.interview.practice.sorting.simple;
 
 import java.io.BufferedReader;
 import java.io.IOException;
