@@ -1,4 +1,4 @@
-package com.anuj.interview.practice.sorting;
+package com.anuj.interview.practice.sorting.simple;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -82,12 +82,13 @@ public class InsertionSort {
 
 	public static void main(String[] args) throws IOException {
 		System.out.println("Enter size of the array to do insertion sort : ");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+		  System.in));
 		int size = Integer.parseInt(reader.readLine());
 		array = new int[size];
 		System.out.println("Enter the array to do insertion sort : ");
 		for (int i = 0; i < array.length; i++) {
-			System.out.println("Enter " + i + "th element of the array");
+			System.out.println("Enter " + (i + 1) + "th element of the array");
 			array[i] = Integer.parseInt(reader.readLine());
 		}
 		long startTime = System.nanoTime();
@@ -99,7 +100,8 @@ public class InsertionSort {
 			System.out.println(array[i]);
 		}
 		int length = removeDups();
-		System.out.println("Insertion sorted after removing duplicates array : ");
+		System.out
+		  .println("Insertion sorted after removing duplicates array : ");
 		for (int i = 0; i < length; i++) {
 			System.out.println(array[i]);
 		}
