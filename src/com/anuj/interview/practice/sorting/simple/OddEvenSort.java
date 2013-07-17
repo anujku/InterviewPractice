@@ -41,12 +41,13 @@ public class OddEvenSort {
 
 	public static void main(String[] args) throws IOException {
 		System.out.println("Enter size of the array to do odd-even sort : ");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+		  System.in));
 		int size = Integer.parseInt(reader.readLine());
 		int[] array = new int[size];
 		System.out.println("Enter the array to do odd-even sort : ");
 		for (int i = 0; i < array.length; i++) {
-			System.out.println("Enter " + i + "th element of the array");
+			System.out.println("Enter " + (i + 1) + "th element of the array");
 			array[i] = Integer.parseInt(reader.readLine());
 		}
 		long startTime = System.nanoTime();

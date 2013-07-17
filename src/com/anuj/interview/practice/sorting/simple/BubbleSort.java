@@ -39,7 +39,7 @@ public class BubbleSort {
 		int[] array = new int[size];
 		System.out.println("Enter the array to bubble sort : ");
 		for (int i = 0; i < array.length; i++) {
-			System.out.println("Enter " + i + "th element of the array");
+			System.out.println("Enter " + (i+1) + "th element of the array");
 			array[i] = Integer.parseInt(reader.readLine());
 		}
 		long startTime = System.nanoTime();

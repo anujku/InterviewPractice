@@ -51,14 +51,14 @@ public class MergeSort {
 		}
 	}
 
-	public static void merge(int first, int middle, int end) {
-		int[] temp = new int[middle + end]; // Allocate the temporary array
+	public static void merge(int first, int middle, int last) {
+		int[] temp = new int[middle + last]; // Allocate the temporary array
 		int copied = 0; // Number of elements copied from array to temp
 		int copied1 = 0; // Number copied from the first half of array
 		int copied2 = 0; // Number copied from the second half of array
 		int i;           // Array index to copy from temp back into array
 		// Merge elements, copying from two halves of array to the temporary array.
-		while ((copied1 < middle) && (copied2 < end)) {
+		while ((copied1 < middle) && (copied2 < last)) {
 			temp[copied++] = (array[first + copied1] < array[first + middle
 			  + copied2]) ? array[first + (copied1++)] : array[first + middle
 			  + (copied2++)];
@@ -66,10 +66,10 @@ public class MergeSort {
 		// Copy any remaining entries in the left and right subarrays.
 		while (copied1 < middle)
 			temp[copied++] = array[first + (copied1++)];
-		while (copied2 < end)
+		while (copied2 < last)
 			temp[copied++] = array[first + middle + (copied2++)];
 		// Copy from temp back to the array array.
-		for (i = 0; i < middle + end; i++)
+		for (i = 0; i < middle + last; i++)
 			array[first + i] = temp[i];
 	}
 
@@ -81,7 +81,7 @@ public class MergeSort {
 		array = new int[size];
 		System.out.println("Enter the array to do merge sort : ");
 		for (int i = 0; i < array.length; i++) {
-			System.out.println("Enter " + i + "th element of the array");
+			System.out.println("Enter " + (i + 1) + "th element of the array");
 			array[i] = Integer.parseInt(reader.readLine());
 		}
 		long startTime = System.nanoTime();
