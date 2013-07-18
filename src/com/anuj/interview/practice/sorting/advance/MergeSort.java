@@ -13,6 +13,14 @@ import java.io.InputStreamReader;
 // Most implementations produce a stable sort, which means that the
 // implementation preserves the input order of equal elements in the sorted
 // output. Merge sort is a divide and conquer algorithm.
+//
+//
+//
+// Data structure : Array
+// Worst case performance : O(n log n)
+// Best case performance : O(n log n) typical, O(n) natural variant
+// Average case performance : O(n log n)
+// Worst case space complexity : O(n) auxiliary
 public class MergeSort {
 	// Advantages :
 	// 1. conceptually simple
@@ -21,10 +29,10 @@ public class MergeSort {
 	// 3. suited to sorting external files; divides array into smaller files until
 	// can be stored in array in memory
 	// 4. stable performance
-	//
+	// 5. parallelizes better, and is more efficient at handling slow-to-access
+	// sequential media
 	//
 	// Two inefficiencies of MergeSort :
-	//
 	//
 	// 1. Not in place (It uses another array b[].)
 	// 1.1 Copy between a[] and b[] needed
