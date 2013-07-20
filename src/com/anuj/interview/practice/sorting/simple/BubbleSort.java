@@ -32,21 +32,49 @@ public class BubbleSort {
 		return array;
 	}
 
+	private static int[] modifiedBubbleSort(int[] array) {
+		boolean exchanged = false;
+		for (int outer = array.length - 1; outer > 1; outer--) {
+			exchanged = false;
+			for (int inner = 0; inner < outer; inner++) {
+				if (array[inner] > array[inner + 1]) {
+					exchanged = true;
+					int temp = array[inner];
+					array[inner] = array[inner + 1];
+					array[inner + 1] = temp;
+				}
+			}
+			if (!exchanged) break;
+		}
+		return array;
+	}
+
 	public static void main(String[] args) throws IOException {
 		System.out.println("Enter size of the array to bubble sort : ");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+		  System.in));
 		int size = Integer.parseInt(reader.readLine());
-		int[] array = new int[size];
+		int[] array1 = new int[size];
 		System.out.println("Enter the array to bubble sort : ");
-		for (int i = 0; i < array.length; i++) {
-			System.out.println("Enter " + (i+1) + "th element of the array");
-			array[i] = Integer.parseInt(reader.readLine());
+		for (int i = 0; i < array1.length; i++) {
+			System.out.println("Enter " + (i + 1) + "th element of the array");
+			array1[i] = Integer.parseInt(reader.readLine());
 		}
 		long startTime = System.nanoTime();
-		array = bubbleSort(array);
+		int[] array = bubbleSort(array1);
 		long totalTime = System.nanoTime() - startTime;
-		System.out.println("Total Runtime in nanoseconds : " + totalTime);
+		System.out.println("Total Runtime for bubble sort in nanoseconds : "
+		  + totalTime);
 		System.out.println("Bubble sorted array : ");
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i]);
+		}
+		startTime = System.nanoTime();
+		array = modifiedBubbleSort(array1);
+		totalTime = System.nanoTime() - startTime;
+		System.out.println("Total Runtime for modified bubble sort "
+		  + "in nanoseconds : " + totalTime);
+		System.out.println("Modified Bubble sorted array : ");
 		for (int i = 0; i < array.length; i++) {
 			System.out.println(array[i]);
 		}

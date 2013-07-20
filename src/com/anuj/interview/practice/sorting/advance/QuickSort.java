@@ -4,8 +4,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-// Worst case performance O(n2) (extremely rare)
-// Best case performance O(n log n)
+// Worst case performance O(n2) (Data is sorted already)
+// When the pivot is the smallest (or largest) element at partitioning on
+// a block of size n, the result yields one empty sub-block, one element (pivot)
+// in the “correct” place and one sub-block of size (n-1) takes θ(n) times.
+// Recurrence Equation:
+// T(1) = 1
+// T(n) = T(n-1) + cn
+// Solution : θ(n2) Worse than Mergesort
+//
+// Best case performance O(n log n) Comparable to Mergesort!
+// The pivot is in the middle (median) (at each partition
+// step), i.e. after each partitioning, on a block of size n, the
+// result yields two sub-blocks of approximately equal size and
+// the pivot element in the “middle” position takes n data comparisons.
+// Recurrence Equation becomes
+// T(1) = 1
+// T(n) = 2T(n/2) + cn
+// Solution: θ(n logn)
+//
 // Average case performance O(n log n)
 // Worst case space complexity O(n) auxiliary (naive)
 // O(log n) auxiliary (Sedgewick 1978)
@@ -29,6 +46,15 @@ public class QuickSort {
 		array[y] = temp;
 	}
 
+	// Different ways to select a good pivot.
+	// - First element
+	// - Last element
+	// - Median-of-three elements
+	// - Pick three elements, and find the median x of
+	// these elements. Use that median as the pivot.
+	// - Random element
+	// - Randomly pick a element as a pivot.
+	//
 	// Reorganizes the given list so all elements less than the first are
 	// before it and all greater elements are after it.
 	public static int partition(int array[], int start, int end) {
