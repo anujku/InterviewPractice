@@ -56,6 +56,7 @@ public class InsertionSort {
 			array[holePos] = valueToInsert;
 			// A[0..i] are now in sorted order
 		}
+		// To remove duplicate elements
 		int[] updatedArray = new int[array.length - counter];
 		int j = 0;
 		for (int i = 0; i < array.length; i++) {
