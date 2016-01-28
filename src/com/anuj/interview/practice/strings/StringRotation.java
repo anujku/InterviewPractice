@@ -16,6 +16,10 @@ public class StringRotation {
 			  + word2.substring(0, i));
 		}
 	}
+	
+	public static boolean isRotation2(String s1,String s2) {
+    		return (s1.length() == s2.length()) && ((s1+s1).indexOf(s2) != -1);
+	}
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
